@@ -21,4 +21,4 @@ const changedData = [
     templateAddData('subtitle', 'Remplaza texto', template)
 ]
 
-templateInject(changedData);
+templateInject(changedData, template);

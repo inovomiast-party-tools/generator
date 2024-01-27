@@ -92,13 +92,32 @@ export const templateInject = (changes, template, config) => {
     const splitted_template = template.split('\n');
     for (let change = 0; change < changes.length; change++)
     {
-      console.log(splitted_template);
-      console.log(changes[change])
+      // Once we have the splitted_template and the changes,
+      // we need to take the position of the lines and replace
+      // them into the array.
+      // Finally, just turn that array in a string and
+      // return it so pdf-html can understand it and
+      // parse it to the pdf file.
+      if (splitted_template.includes('<body>') && splitted_template.includes('</body>'))
+      {
+        let bodyTags = [
+          splitted_template.indexOf("<body>"),
+          splitted_template.indexOf("</body>")
+        ]
+        for (let line = bodyTags[0] + 1; line < bodyTags[1]; line++)
+        {
+          console.log(splitted_template[line]);
+        }
+      }
+      else
+      {
+        throw new Error("Error Compiling: Wrong Structure!");
+      }
     }
   }
   else
   {
-    throw new Error("Changes and Template must have values!")
+    throw new Error("Changes and Template must have values!");
   }
 }
 
