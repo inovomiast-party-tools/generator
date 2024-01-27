@@ -1,7 +1,7 @@
 import * as pdf from 'html-pdf';
 import * as fs from 'fs';
 import * as http from 'http'
-import { getTemplateSync, templateAddData } from './template.js';
+import { getTemplateSync, templateAddData, templateInject } from './template.js';
 
 // const server = http.createServer((req, res) => {
 //     if (req.method === 'POST')
@@ -14,4 +14,11 @@ import { getTemplateSync, templateAddData } from './template.js';
 
 const template = getTemplateSync('/template.html');
 
-templateAddData('identifier', 'Mario', template);
+console.log(template, '\n');
+
+const changedData = [
+    templateAddData('title', 'Hola ${nombe}', template),
+    templateAddData('subtitle', 'Remplaza texto', template)
+]
+
+templateInject(changedData);
