@@ -87,7 +87,7 @@ export const templateAddData = (where, data, template) => {
 export const templateInject = (changes, template, config) => {
   // Loop thru all the changes of the template
   // and replace it on the splitted_template
-  if (template)
+  if (template && changes)
   {
     const splitted_template = template.split('\n');
     for (let change = 0; change < changes.length; change++)
@@ -98,7 +98,7 @@ export const templateInject = (changes, template, config) => {
   }
   else
   {
-
+    throw new Error("Changes and Template must have values!")
   }
 }
 
