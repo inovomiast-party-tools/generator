@@ -103,11 +103,14 @@ export const templateInject = (changes, template, config) => {
         splitted_template.indexOf("<body>"),
         splitted_template.indexOf("</body>"),
       ];
-      for (let line = bodyTags[0] + 1; line < bodyTags[1]; line++) {
-        let lines = splitted_template.indexOf(splitted_template[line]);
-        console.log(`Line: ${line}`, splitted_template[lines]);
-        for (let change = 0; change < changes.length; change++) {}
+      for (let line = bodyTags[0] + 1, change = 0; line < bodyTags[1] && change < changes.length; line++, change++) {
+        let currentLine = splitted_template[line];
+        console.log(`Line: ${line}`, currentLine);
+        splitted_template[line] = changes[change];
       }
+      const finalTemplate = splitted_template.join('\n');
+      console.log(finalTemplate);
+      return finalTemplate.toString();
     } else {
       throw new Error("Error Compiling: Wrong Structure!");
     }
