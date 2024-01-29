@@ -11,7 +11,11 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.get("/", (req, res) => {
-  return res.send("Welcome to INPTServer");
+  return res.send({ response: "Welcome to INPTServer" }).status(200);
+});
+
+app.get('/download', (req, res) => {
+  res.send({ response: "Download Files from Server: /download/:ticket_id" }).status(200);
 });
 
 app.get("/download/:ticket_id", async (req, res) => {
