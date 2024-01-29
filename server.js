@@ -11,10 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.get("/", (req, res) => {
-  if (req.headers.authorization) {
-    return res.send({ Hello: "World" });
-  }
-  return res.send({ Authorization: "Invalid auth token!" }).status(401);
+  return res.send("Welcome to INPTServer");
 });
 
 app.get("/download/:ticket_id", async (req, res) => {
